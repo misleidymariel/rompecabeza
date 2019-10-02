@@ -33,7 +33,7 @@ li::before {
   background: #FFF;
   padding: 30px;
   color: #000;
-  width: 100px;
+  width: 200px;
 }
 
 .col-60 {
@@ -46,6 +46,7 @@ li::before {
 }
 
 .texto-centrado {
+  padding: 30px;
   text-align: center;
 }
 
@@ -72,6 +73,6 @@ li::before {
 }
 
 #flecha img{
-  width: 150px;
-  height: 150px;
+  width: 80px;
+  height: 80px;
 }

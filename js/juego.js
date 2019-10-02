@@ -25,25 +25,43 @@ Cada elemento de este arreglo deberá ser mostrado en la lista con id 'lista-ins
 Para eso deberás usar la función ya implementada mostrarInstruccionEnLista().
 Podés ver su implementación en la ultima parte de este codigo. */
 function mostrarInstrucciones(instrucciones) {
-  var instrucion = "";
   for(i=0 ;i < instrucciones.length ; i++){
-    instrucion = instrucion + "<li>" + instrucciones[i] + "</li>";
+    mostrarInstruccionEnLista(instrucciones[i],"lista-instrucciones" );
   }
-  document.getElementById("lista-instrucciones").innerHTML = instrucion;
 }
 
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
 y utilice actualizarUltimoMovimiento para mostrarlo en pantalla */
 
+function agregarUltimoMovimiento(direccion){
+  movimientos.push(direccion);
+  actualizarUltimoMovimiento(direccion);
+}
+
 /* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora. 
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
 function chequearSiGano() {
-    //COMPLETAR
+  var expected= 1;
+  for(fila = 0; fila < grilla.length; fila ++){
+    for(columna = 0; columna < grilla.length; columna ++){
+      var valor = grilla[fila][columna];
+      if(expected !== valor){
+        return false;
+      }
+      expected ++;
+    }
+  }
+
+  return true;
+  
 }
 
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
 function mostrarCartelGanador() {
-    //COMPLETAR
+  swal({
+    title: "Juego ganado",
+    icon: "success"
+});
 }
 
 /* Función que intercambia dos posiciones en la grilla.
@@ -113,9 +131,11 @@ function moverEnDireccion(direccion) {
 
     if (posicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
         intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
-        actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
+        actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)
 
   //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
+
+       agregarUltimoMovimiento(direccion);
 
     }
 }
